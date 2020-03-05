@@ -12,32 +12,15 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.alanvan.linhrecipe.ui.shopping_list.ShoppingListFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
-
-    <fragment
-        android:id="@+id/nav_slideshow"
+        android:id="@+id/nav_search"
         android:name="com.alanvan.linhrecipe.ui.search.SearchFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:label="@string/menu_search"
+        tools:layout="@layout/fragment_search" />
 
     <fragment
-        android:id="@+id/nav_tools"
+        android:id="@+id/nav_favorite_recipes"
         android:name="com.alanvan.linhrecipe.ui.favorite_recipes.FavoriteRecipesFragment"
-        android:label="@string/menu_tools"
-        tools:layout="@layout/fragment_tools" />
+        android:label="@string/menu_favorite_recipes"
+        tools:layout="@layout/fragment_favorite_recipes" />
 
-    <fragment
-        android:id="@+id/nav_share"
-        android:name="com.alanvan.linhrecipe.ui.share.ShareFragment"
-        android:label="@string/menu_share"
-        tools:layout="@layout/fragment_share" />
-
-    <fragment
-        android:id="@+id/nav_send"
-        android:name="com.alanvan.linhrecipe.ui.send.SendFragment"
-        android:label="@string/menu_send"
-        tools:layout="@layout/fragment_send" />
 </navigation>
