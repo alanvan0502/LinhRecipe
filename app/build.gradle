@@ -19,14 +19,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField('String', "FatSecretClientID", fatSecretClientID)
             buildConfigField('String', "FatSecretClientSecret", fatSecretClientSecret)
-            buildConfigField('String', "FatSecretConsumerSecret", fatSecretConsumerSecret)
         }
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField('String', "FatSecretClientID", fatSecretClientID)
             buildConfigField('String', "FatSecretClientSecret", fatSecretClientSecret)
-            buildConfigField('String', "FatSecretConsumerSecret", fatSecretConsumerSecret)
         }
     }
 
@@ -61,7 +59,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.2.1'
 
     // Dependency Injection
-    implementation 'org.kodein.di:kodein-di-generic-jvm:5.0.1'
+    implementation 'org.kodein.di:kodein-di-generic-jvm:5.1.1'
 
     // AirBnb Epoxy
     implementation "com.airbnb.android:epoxy:3.9.0"
@@ -73,12 +71,16 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
 
-    // Networking
+    // ReactiveX
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
     implementation 'io.reactivex.rxjava2:rxjava:2.2.12'
+
+    // Networking
     implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
     implementation 'com.squareup.retrofit2:retrofit:2.7.1'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.7.1'
+    implementation "com.squareup.okhttp3:logging-interceptor:4.4.0"
+    implementation "com.squareup.okhttp3:okhttp:4.4.0"
 
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

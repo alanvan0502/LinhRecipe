@@ -13,10 +13,15 @@ import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
+import androidx.lifecycle.ViewModelProvider
+import com.alanvan.linhrecipe.data.injection.Modules
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +44,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_favorite_recipes), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        viewModel.getAuthToken()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
