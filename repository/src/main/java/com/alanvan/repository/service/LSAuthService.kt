@@ -5,6 +5,6 @@ import io.reactivex.Single
 import retrofit2.http.POST
 
 interface LSAuthService {
-    @POST
+    @POST("/connect/token")
     fun getAuthToken(): Single<AuthResponse>
 }

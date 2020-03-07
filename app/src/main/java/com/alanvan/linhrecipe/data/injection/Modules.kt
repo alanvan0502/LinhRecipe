@@ -4,6 +4,7 @@ import android.content.Context
 import com.alanvan.domain.base.GetAuthUseCase
 import com.alanvan.domain.repository.LSAccountRepository
 import com.alanvan.linhrecipe.LRApplication
+import com.alanvan.linhrecipe.features.account.AccountManager
 import com.alanvan.repository.repository.LSApiAccountRepository
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers

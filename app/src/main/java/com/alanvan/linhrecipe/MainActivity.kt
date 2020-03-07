@@ -1,6 +1,7 @@
 package com.alanvan.linhrecipe
 
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import androidx.navigation.findNavController
@@ -13,6 +14,7 @@ import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.alanvan.linhrecipe.data.injection.Modules
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -47,6 +49,10 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewModel.getAuthToken()
+
+        viewModel.auth().observe(this, Observer {
+            Log.d("dmdmdm", it.accessToken)
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -18,7 +18,7 @@ class LSApiAccountRepository : LSAccountRepository, KodeinAware {
         return authService.getAuthToken().map {
             Auth(
                 accessToken = it.access_token,
-                expiryTime = System.currentTimeMillis() + it.expires_in * 1_000L
+                expiresIn = it.expires_in * 1_000L
             )
         }
     }

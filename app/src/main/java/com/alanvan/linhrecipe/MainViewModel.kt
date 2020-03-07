@@ -23,4 +23,8 @@ class MainViewModel : ViewModel(), KodeinAware {
         getAuthUseCase.loadWithLiveData(viewStateLiveData, authLiveData).invoke()
     }
 
+    fun getAuthTokenObservable() {
+        getAuthUseCase.execute()
+    }
+
 }

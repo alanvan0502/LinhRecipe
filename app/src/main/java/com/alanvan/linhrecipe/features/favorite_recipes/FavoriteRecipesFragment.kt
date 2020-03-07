@@ -1,4 +1,4 @@
-package com.alanvan.linhrecipe.ui.home
+package com.alanvan.linhrecipe.features.favorite_recipes
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.alanvan.linhrecipe.R
 
-class HomeFragment : Fragment() {
+class FavoriteRecipesFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var toolsViewModel: FavoriteRecipesViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-            ViewModelProviders.of(this).get(HomeViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(this, Observer {
+        toolsViewModel =
+            ViewModelProviders.of(this).get(FavoriteRecipesViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_favorite_recipes, container, false)
+        val textView: TextView = root.findViewById(R.id.text_tools)
+        toolsViewModel.text.observe(this, Observer {
             textView.text = it
         })
         return root

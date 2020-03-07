@@ -1,4 +1,4 @@
-package com.alanvan.linhrecipe.ui.search
+package com.alanvan.linhrecipe.features.search
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

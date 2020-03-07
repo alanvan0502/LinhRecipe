@@ -1,4 +1,4 @@
-package com.alanvan.linhrecipe.ui.favorite_recipes
+package com.alanvan.linhrecipe.features.search
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.alanvan.linhrecipe.R
 
-class FavoriteRecipesFragment : Fragment() {
+class SearchFragment : Fragment() {
 
-    private lateinit var toolsViewModel: FavoriteRecipesViewModel
+    private lateinit var slideshowViewModel: SearchViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        toolsViewModel =
-            ViewModelProviders.of(this).get(FavoriteRecipesViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_favorite_recipes, container, false)
-        val textView: TextView = root.findViewById(R.id.text_tools)
-        toolsViewModel.text.observe(this, Observer {
+        slideshowViewModel =
+            ViewModelProviders.of(this).get(SearchViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_search, container, false)
+        val textView: TextView = root.findViewById(R.id.text_slideshow)
+        slideshowViewModel.text.observe(this, Observer {
             textView.text = it
         })
         return root

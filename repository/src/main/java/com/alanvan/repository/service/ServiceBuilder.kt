@@ -1,10 +1,9 @@
 package com.alanvan.repository.service
 
 import com.squareup.moshi.Moshi
-import okhttp3.Credentials
-import okhttp3.Interceptor
-import okhttp3.OkHttpClient
+import okhttp3.*
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
@@ -23,10 +22,17 @@ object ServiceBuilder {
             .readTimeout(TIME_OUT_SECONDS, TimeUnit.SECONDS)
             .addInterceptor { chain ->
                 val original = chain.request()
+
+                val formData = MultipartBody.Builder()
+                    .setType(MultipartBody.FORM)
+                    .addFormDataPart("grant_type", "client_credentials")
+                    .addFormDataPart("scope", "basic")
+                    .build()
+
                 val requestBuilder = original.newBuilder()
                     .header("Authorization", Credentials.basic(userName, password))
                     .header("Content-type", "application/json")
-                    .method(original.method, original.body)
+                    .post(formData)
 
                 val request = requestBuilder.build()
                 chain.proceed(request)
@@ -36,6 +42,7 @@ object ServiceBuilder {
         return Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(clientBuilder.build())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
     }
