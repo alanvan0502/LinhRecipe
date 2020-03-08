@@ -1,6 +1,6 @@
 package com.alanvan.domain.repository
 
-import com.alanvan.domain.model.recipe_type.RecipeType
+import com.alanvan.domain.model.home.RecipeType
 import io.reactivex.Single
 
 interface RecipeRepository {

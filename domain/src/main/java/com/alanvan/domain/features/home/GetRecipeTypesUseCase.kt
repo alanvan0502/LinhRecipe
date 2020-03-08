@@ -1,7 +1,7 @@
-package com.alanvan.domain.features.recipe_types
+package com.alanvan.domain.features.home
 
 import com.alanvan.domain.base.BaseUseCase
-import com.alanvan.domain.model.recipe_type.RecipeType
+import com.alanvan.domain.model.home.RecipeType
 import com.alanvan.domain.repository.RecipeRepository
 import io.reactivex.Observable
 import io.reactivex.Scheduler

@@ -1,6 +1,6 @@
 package com.alanvan.repository.repository
 
-import com.alanvan.domain.model.recipe_type.RecipeType
+import com.alanvan.domain.model.home.RecipeType
 import com.alanvan.domain.repository.RecipeRepository
 import com.alanvan.repository.data.injection.Modules
 import com.alanvan.repository.data.model.recipe_types.RecipeTypesMapper

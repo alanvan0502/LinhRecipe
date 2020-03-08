@@ -7,4 +7,5 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="splash_icon">200dp</dimen>
     <dimen name="common_16dp">16dp</dimen>
+    <dimen name="common_24sp">24sp</dimen>
 </resources>

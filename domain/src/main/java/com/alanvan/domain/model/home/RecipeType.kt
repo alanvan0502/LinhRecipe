@@ -1,4 +1,4 @@
-package com.alanvan.domain.model.recipe_type
+package com.alanvan.domain.model.home
 
 enum class RecipeType(val value: String) {
     APPETIZER("Appetizer"),

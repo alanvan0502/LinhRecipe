@@ -9,7 +9,7 @@ import io.reactivex.schedulers.Schedulers
 
 class SplashViewModel : ViewModel() {
 
-    val bag = CompositeDisposable()
+    private val bag = CompositeDisposable()
     val tokenLiveData = MutableLiveData<String?>(null)
 
     fun initialize() {

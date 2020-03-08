@@ -1,7 +1,7 @@
 package com.alanvan.repository.data.model.recipe_types
 
 import com.alanvan.domain.base.DataMapper
-import com.alanvan.domain.model.recipe_type.RecipeType
+import com.alanvan.domain.model.home.RecipeType
 
 class RecipeTypesMapper : DataMapper<RecipeTypesResponse, List<RecipeType>>() {
 

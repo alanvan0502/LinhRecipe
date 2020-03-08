@@ -2,7 +2,7 @@ package com.alanvan.linhrecipe.data.injection
 
 import android.content.Context
 import com.alanvan.domain.features.account.GetAuthUseCase
-import com.alanvan.domain.features.recipe_types.GetRecipeTypesUseCase
+import com.alanvan.domain.features.home.GetRecipeTypesUseCase
 import com.alanvan.domain.repository.LSAccountRepository
 import com.alanvan.domain.repository.RecipeRepository
 import com.alanvan.linhrecipe.LRApplication
@@ -20,7 +20,6 @@ import org.kodein.di.generic.singleton
 object Modules {
 
     enum class Tag {
-        CONTEXT,
         THREAD_IO,
         THREAD_UI
     }
@@ -30,7 +29,7 @@ object Modules {
 
         bind<Scheduler>(Tag.THREAD_IO) with singleton { Schedulers.io() }
         bind<Scheduler>(Tag.THREAD_UI) with singleton { AndroidSchedulers.mainThread() }
-        bind<Context>(Tag.CONTEXT) with provider { application }
+        bind<Context>() with provider { application }
 
         bind<LSAccountRepository>() with singleton { LSApiAccountRepository() }
         bind<RecipeRepository>() with singleton { RecipeAPIRepository() }
