@@ -4,6 +4,7 @@ import android.os.CountDownTimer
 import com.alanvan.domain.features.account.GetAuthUseCase
 import com.alanvan.linhrecipe.LRApplication
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.subjects.PublishSubject
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.generic.instance
@@ -13,6 +14,7 @@ class AccountManager : KodeinAware {
 
     private val getAuthUseCase: GetAuthUseCase by instance()
     private val bag = CompositeDisposable()
+    private val tokenSubject = PublishSubject.create<String>()
 
     private var token: String? = null
     private var expiryTime: Long? = null
@@ -32,6 +34,7 @@ class AccountManager : KodeinAware {
         }
 
         fun getAuthToken() = instance.token
+        fun getTokenSubject() = instance.tokenSubject
         fun forceFetchAuthToken() = instance.fetchAuthToken()
     }
 
@@ -54,8 +57,9 @@ class AccountManager : KodeinAware {
         }.subscribe({ auth ->
             token = auth.accessToken
             expiryTime = auth.expiresIn
+            tokenSubject.onNext(token ?: "")
         }, {
-
+            tokenSubject.onNext("")
         }))
     }
 

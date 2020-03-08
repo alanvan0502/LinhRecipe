@@ -10,4 +10,5 @@
     <string name="menu_home">Home</string>
     <string name="menu_search">Search</string>
     <string name="menu_favorite_recipes">Favorite Recipes</string>
+    <string name="linh_s_recipe">Linh\'s Recipe</string>
 </resources>
