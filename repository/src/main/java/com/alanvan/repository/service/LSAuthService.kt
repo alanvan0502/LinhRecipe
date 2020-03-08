@@ -1,6 +1,6 @@
 package com.alanvan.repository.service
 
-import com.alanvan.repository.data.model.AuthResponse
+import com.alanvan.repository.data.model.account.AuthResponse
 import io.reactivex.Single
 import retrofit2.http.POST
 

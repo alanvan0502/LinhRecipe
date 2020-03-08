@@ -1,6 +1,7 @@
-package com.alanvan.domain.base
+package com.alanvan.domain.features.account
 
-import com.alanvan.domain.model.Auth
+import com.alanvan.domain.base.BaseUseCase
+import com.alanvan.domain.model.account.Auth
 import com.alanvan.domain.repository.LSAccountRepository
 import io.reactivex.Observable
 import io.reactivex.Scheduler

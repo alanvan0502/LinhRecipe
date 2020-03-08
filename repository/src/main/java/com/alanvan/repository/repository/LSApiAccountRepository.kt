@@ -1,6 +1,6 @@
 package com.alanvan.repository.repository
 
-import com.alanvan.domain.model.Auth
+import com.alanvan.domain.model.account.Auth
 import com.alanvan.domain.repository.LSAccountRepository
 import com.alanvan.repository.data.injection.Modules
 import com.alanvan.repository.service.LSAuthService

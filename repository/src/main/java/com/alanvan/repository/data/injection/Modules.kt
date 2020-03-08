@@ -2,6 +2,7 @@ package com.alanvan.repository.data.injection
 
 import com.alanvan.repository.service.APIBuildConfig
 import com.alanvan.repository.service.LSAuthService
+import com.alanvan.repository.service.LSService
 import com.alanvan.repository.service.ServiceBuilder
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
@@ -30,6 +31,9 @@ object Modules {
                 instance(Tag.FS_CLIENT_ID),
                 instance(Tag.FS_CLIENT_SECRET)
             )
+        }
+        bind<LSService>() with singleton {
+            ServiceBuilder.createLSService(instance(Tag.FS_BASE_URL))
         }
     }
 

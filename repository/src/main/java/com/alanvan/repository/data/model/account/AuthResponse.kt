@@ -1,4 +1,4 @@
-package com.alanvan.repository.data.model
+package com.alanvan.repository.data.model.account
 
 data class AuthResponse (
     val access_token: String,

@@ -29,7 +29,7 @@ class LRApplication : Application(), Application.ActivityLifecycleCallbacks {
 
     private fun initializeAPI() {
         APIBuildConfig.OkHttpConfig.APPLICATION_INTERCEPTORS.add(
-            HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.HEADERS }
+            HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
         )
         APIBuildConfig.UserConfig.fatSecretClientId = BuildConfig.FatSecretClientID
         APIBuildConfig.UserConfig.fatSecretClientSecret = BuildConfig.FatSecretClientSecret

@@ -1,7 +1,7 @@
 package com.alanvan.linhrecipe.features.account
 
 import android.os.CountDownTimer
-import com.alanvan.domain.base.GetAuthUseCase
+import com.alanvan.domain.features.account.GetAuthUseCase
 import com.alanvan.linhrecipe.LRApplication
 import io.reactivex.disposables.CompositeDisposable
 import org.kodein.di.Kodein
@@ -20,6 +20,7 @@ class AccountManager : KodeinAware {
     private var countDownTimer: CountDownTimer? = null
 
     companion object {
+        const val FETCH_AUTH_BEFORE = 60_000
         private val instance by lazy { AccountManager() }
 
         fun initialize() {
@@ -43,7 +44,7 @@ class AccountManager : KodeinAware {
                 }
 
                 override fun onTick(millisUntilFinished: Long) {
-                    if (millisUntilFinished < 60_0000) {
+                    if (millisUntilFinished < FETCH_AUTH_BEFORE) {
                         fetchAuthToken()
                         countDownTimer?.cancel()
                     }

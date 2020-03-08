@@ -1,11 +1,13 @@
 package com.alanvan.linhrecipe.data.injection
 
 import android.content.Context
-import com.alanvan.domain.base.GetAuthUseCase
+import com.alanvan.domain.features.account.GetAuthUseCase
+import com.alanvan.domain.features.recipe_types.GetRecipeTypesUseCase
 import com.alanvan.domain.repository.LSAccountRepository
+import com.alanvan.domain.repository.RecipeRepository
 import com.alanvan.linhrecipe.LRApplication
-import com.alanvan.linhrecipe.features.account.AccountManager
 import com.alanvan.repository.repository.LSApiAccountRepository
+import com.alanvan.repository.repository.RecipeAPIRepository
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -31,8 +33,18 @@ object Modules {
         bind<Context>(Tag.CONTEXT) with provider { application }
 
         bind<LSAccountRepository>() with singleton { LSApiAccountRepository() }
+        bind<RecipeRepository>() with singleton { RecipeAPIRepository() }
+
         bind<GetAuthUseCase>() with provider {
             GetAuthUseCase(
+                instance(),
+                instance(Tag.THREAD_IO),
+                instance(Tag.THREAD_UI)
+            )
+        }
+
+        bind<GetRecipeTypesUseCase>() with provider {
+            GetRecipeTypesUseCase(
                 instance(),
                 instance(Tag.THREAD_IO),
                 instance(Tag.THREAD_UI)

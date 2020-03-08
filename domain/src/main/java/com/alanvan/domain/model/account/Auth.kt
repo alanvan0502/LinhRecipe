@@ -1,4 +1,4 @@
-package com.alanvan.domain.model
+package com.alanvan.domain.model.account
 
 data class Auth(
     val accessToken: String,
