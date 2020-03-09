@@ -1,4 +1,4 @@
-package com.alanvan.linhrecipe.search.base.view_item
+package com.alanvan.linhrecipe.features.recipe_details.view_item
 
 import android.content.Context
 import android.widget.ImageView
@@ -15,34 +15,23 @@ import org.kodein.di.KodeinAware
 import org.kodein.di.generic.instance
 
 @EpoxyModelClass
-abstract class RecipeEpoxyModel : EpoxyModelWithHolder<RecipeEpoxyModel.Holder>(), KodeinAware {
+abstract class RecipeHeaderEpoxyModel : EpoxyModelWithHolder<RecipeHeaderEpoxyModel.Holder>(), KodeinAware {
     override val kodein: Kodein = LRApplication.kodein
 
     private val context: Context by instance()
 
     @EpoxyAttribute
-    var recipeName: String? = null
-
-    @EpoxyAttribute
-    var recipeCalories: String? = null
-
-    @EpoxyAttribute
-    var recipeCarbohydrate: String? = null
-
-    @EpoxyAttribute
-    var recipeFat: String? = null
-
-    @EpoxyAttribute
-    var recipeProtein: String? = null
-
-    @EpoxyAttribute
     var recipeImage: String? = null
+
+    @EpoxyAttribute
+    var recipeDescription: String? = null
+
+    @EpoxyAttribute
+    var rating: Int? = null
 
     override fun bind(holder: Holder) {
         super.bind(holder)
         holder.apply {
-            recipeNameTextView.text = recipeName
-
             if (!recipeImage.isNullOrEmpty()) {
                 recipeImageView.loadImage(
                     recipeImage,
@@ -59,27 +48,19 @@ abstract class RecipeEpoxyModel : EpoxyModelWithHolder<RecipeEpoxyModel.Holder>(
                     it.centerCrop()
                 }
             }
-            recipeCaloriesTextView.text = context.getString(
-                R.string.calories_and_carbo,
-                recipeCalories,
-                recipeCarbohydrate)
 
-            recipeFatTextView.text = context.getString(
-                R.string.fat_and_protein,
-                recipeFat,
-                recipeProtein
-            )
+            recipeDescriptionTextView.text = recipeDescription
+            ratingTextView.text = context.getString(R.string.rating, rating)
         }
     }
 
     override fun getDefaultLayout(): Int {
-        return R.layout.recipe
+        return R.layout.recipe_details_header
     }
 
     class Holder : BaseEpoxyModel.Holder() {
-        val recipeNameTextView by bind<TextView>(R.id.recipeName)
-        val recipeImageView by bind<ImageView>(R.id.recipeImage)
-        val recipeCaloriesTextView by bind<TextView>(R.id.recipeCalories)
-        val recipeFatTextView by bind<TextView>(R.id.recipeFat)
+        val recipeImageView: ImageView by bind(R.id.recipeImage)
+        val recipeDescriptionTextView: TextView by bind(R.id.recipeDescription)
+        val ratingTextView: TextView by bind(R.id.rating)
     }
 }

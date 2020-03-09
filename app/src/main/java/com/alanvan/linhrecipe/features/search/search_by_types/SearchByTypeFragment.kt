@@ -1,4 +1,4 @@
-package com.alanvan.linhrecipe.search.search_by_types
+package com.alanvan.linhrecipe.features.search.search_by_types
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,13 +12,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alanvan.linhrecipe.R
-import com.alanvan.linhrecipe.search.base.SearchEpoxyController
-import com.alanvan.linhrecipe.search.base.SearchViewModel
+import com.alanvan.linhrecipe.features.search.base.SearchEpoxyController
+import com.alanvan.linhrecipe.features.search.base.SearchViewModel
 import com.alanvan.linhrecipe.utilities.increaseTouchableArea
 import kotlinx.android.synthetic.main.fragment_home.recyclerView
 import kotlinx.android.synthetic.main.fragment_search_by_type.*
 
-class SearchByTypeFragment : Fragment() {
+class SearchByTypeFragment : Fragment(), SearchEpoxyController.SearchEpoxyControllerActionListener {
 
     private lateinit var searchViewModel: SearchViewModel
     private lateinit var controller: SearchEpoxyController
@@ -41,7 +41,7 @@ class SearchByTypeFragment : Fragment() {
         val recipeType = args.recipeType
         setupAppbar(recipeType)
 
-        controller = SearchEpoxyController()
+        controller = SearchEpoxyController(this)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = controller.adapter
 
@@ -72,5 +72,14 @@ class SearchByTypeFragment : Fragment() {
                 searchViewModel.search(search_text.text.toString())
             }
         }
+    }
+
+    override fun onRecipeClick(recipeName: String, recipeId: String) {
+        val action = SearchByTypeFragmentDirections
+            .actionSearchByTypeToRecipeDetailFragment(
+                recipeId = recipeId,
+                recipeName = recipeName
+            )
+        findNavController().navigate(action)
     }
 }

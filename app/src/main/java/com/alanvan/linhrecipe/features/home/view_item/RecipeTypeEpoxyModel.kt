@@ -30,7 +30,7 @@ abstract class RecipeTypeEpoxyModel
     @EpoxyAttribute
     var spanCount: Int? = null
 
-    @EpoxyAttribute(EpoxyAttribute.Option.DoNotHash)
+    @EpoxyAttribute(EpoxyAttribute.Option.DoNotHash, EpoxyAttribute.Option.DoNotUseInToString)
     var onClickListener: View.OnClickListener? = null
 
     override fun bind(holder: Holder) {

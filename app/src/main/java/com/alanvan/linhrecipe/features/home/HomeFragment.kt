@@ -49,7 +49,10 @@ class HomeFragment : Fragment(), HomeEpoxyController.HomeEpoxyControllerActionLi
         homeViewModel.viewState().observe(viewLifecycleOwner, Observer {
             when (it) {
                 is ViewState.Error -> {
-                    // retry
+                    // TODO: retry
+                }
+                is ViewState.Loading -> {
+                    // TODO: show loading
                 }
             }
         })

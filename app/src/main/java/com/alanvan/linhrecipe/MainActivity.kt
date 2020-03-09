@@ -9,6 +9,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.alanvan.linhrecipe.features.home.HomeFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
@@ -25,10 +26,7 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
 
         appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.nav_home, R.id.search_by_type,
-                R.id.nav_favorite_recipes
-            ), drawer_layout
+            setOf(R.id.nav_home, R.id.search_by_type), drawer_layout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         nav_view.setupWithNavController(navController)
@@ -42,5 +40,14 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onBackPressed() {
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
+        navHostFragment?.childFragmentManager?.backStackEntryCount?.let {
+            if (it > 0) {
+                super.onBackPressed()
+            }
+        }
     }
 }

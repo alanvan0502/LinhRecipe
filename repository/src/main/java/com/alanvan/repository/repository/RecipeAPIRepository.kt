@@ -1,9 +1,11 @@
 package com.alanvan.repository.repository
 
 import com.alanvan.domain.model.home.RecipeType
+import com.alanvan.domain.model.recipe_details.RecipeDetails
 import com.alanvan.domain.model.search.Recipes
 import com.alanvan.domain.repository.RecipeRepository
 import com.alanvan.repository.data.injection.Modules
+import com.alanvan.repository.data.model.recipe_details.RecipeDetailsMapper
 import com.alanvan.repository.data.model.recipe_types.RecipeTypesMapper
 import com.alanvan.repository.service.LSService
 import io.reactivex.Single
@@ -38,6 +40,17 @@ class RecipeAPIRepository : RecipeRepository, KodeinAware {
             maxResults = maxResults
         ).map {
             it.recipes
+        }
+    }
+
+    override fun getRecipe(token: String?, recipeId: String): Single<RecipeDetails> {
+        return service.getRecipe(
+            method = "recipe.get",
+            format = "json",
+            token = token ?: "",
+            recipeId = recipeId
+        ).map {
+            RecipeDetailsMapper().map(it)
         }
     }
 }

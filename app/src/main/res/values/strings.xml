@@ -14,4 +14,5 @@
 
     <string name="calories_and_carbo">Calories: %s, Carbohydrate: %s</string>
     <string name="fat_and_protein">Fat: %s, Protein: %s</string>
+    <string name="rating">Rating: %s</string>
 </resources>

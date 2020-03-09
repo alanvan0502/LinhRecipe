@@ -1,5 +1,6 @@
 package com.alanvan.repository.service
 
+import com.alanvan.repository.data.model.recipe_details.RecipeDetailsResponse
 import com.alanvan.repository.data.model.recipe_types.RecipeTypesResponse
 import com.alanvan.repository.data.model.search.RecipesResponse
 import io.reactivex.Single
@@ -24,4 +25,12 @@ interface LSService {
         @Query("page_number") pageNumber: Int,
         @Query("max_results") maxResults: Int
     ): Single<RecipesResponse>
+
+    @POST("/rest/server.api")
+    fun getRecipe(
+        @Query("method") method: String,
+        @Query("format") format: String,
+        @Query("token") token: String,
+        @Query("recipe_id") recipeId: String
+    ): Single<RecipeDetailsResponse>
 }

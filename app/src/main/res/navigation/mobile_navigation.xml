@@ -17,23 +17,36 @@
 
     <fragment
         android:id="@+id/search_by_type"
-        android:name="com.alanvan.linhrecipe.search.search_by_types.SearchByTypeFragment"
+        android:name="com.alanvan.linhrecipe.features.search.search_by_types.SearchByTypeFragment"
         tools:layout="@layout/fragment_search_by_type" >
         <argument
             android:name="recipeType"
             app:argType="string" />
+        <action
+            android:id="@+id/action_search_by_type_to_recipeDetailFragment"
+            app:destination="@id/recipeDetailFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/nav_favorite_recipes"
-        android:name="com.alanvan.linhrecipe.features.favorite_recipes.FavoriteRecipesFragment"
-        android:label="@string/menu_favorite_recipes"
-        tools:layout="@layout/fragment_favorite_recipes" />
+        android:id="@+id/nav_search"
+        android:name="com.alanvan.linhrecipe.features.search.search_by_name.SearchByNameFragment"
+        android:label="@string/menu_search"
+        tools:layout="@layout/fragment_search_by_name">
+        <action
+            android:id="@+id/action_search_by_name_to_recipeDetailFragment"
+            app:destination="@id/recipeDetailFragment" />
+    </fragment>
 
     <fragment
-        android:id="@+id/nav_search"
-        android:name="com.alanvan.linhrecipe.search.search_by_name.SearchByNameFragment"
-        android:label="@string/menu_search"
-        tools:layout="@layout/fragment_search_by_name"/>
+        android:id="@+id/recipeDetailFragment"
+        android:name="com.alanvan.linhrecipe.features.recipe_details.RecipeDetailFragment"
+        android:label="RecipeDetailFragment" >
+        <argument
+            android:name="recipeId"
+            app:argType="string" />
+        <argument
+            android:name="recipeName"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

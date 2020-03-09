@@ -3,6 +3,7 @@ package com.alanvan.linhrecipe.data.injection
 import android.content.Context
 import com.alanvan.domain.features.account.GetAuthUseCase
 import com.alanvan.domain.features.home.GetRecipeTypesUseCase
+import com.alanvan.domain.features.recipe_details.GetRecipeDetailsUseCase
 import com.alanvan.domain.repository.LSAccountRepository
 import com.alanvan.domain.repository.RecipeRepository
 import com.alanvan.linhrecipe.LRApplication
@@ -44,6 +45,14 @@ object Modules {
 
         bind<GetRecipeTypesUseCase>() with provider {
             GetRecipeTypesUseCase(
+                instance(),
+                instance(Tag.THREAD_IO),
+                instance(Tag.THREAD_UI)
+            )
+        }
+
+        bind<GetRecipeDetailsUseCase>() with provider {
+            GetRecipeDetailsUseCase(
                 instance(),
                 instance(Tag.THREAD_IO),
                 instance(Tag.THREAD_UI)

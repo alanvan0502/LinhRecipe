@@ -1,11 +1,11 @@
-package com.alanvan.linhrecipe.search.base
+package com.alanvan.linhrecipe.features.search.base
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.alanvan.domain.model.search.Recipes
-import com.alanvan.linhrecipe.search.base.datasource.RecipeDataSourceFactory
+import com.alanvan.linhrecipe.features.search.base.datasource.RecipeDataSourceFactory
 import io.reactivex.disposables.CompositeDisposable
 
 class SearchViewModel : ViewModel() {
