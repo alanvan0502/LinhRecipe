@@ -1,4 +1,4 @@
-package com.alanvan.linhrecipe.features.search.datasource
+package com.alanvan.linhrecipe.search.base.datasource
 
 import androidx.paging.PageKeyedDataSource
 import com.alanvan.domain.model.search.Recipes

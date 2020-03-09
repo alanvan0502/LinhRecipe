@@ -15,3 +15,10 @@ fun Activity.startActivitySafe(intent: Intent, requestCode: Int? = null) {
         Log.e(javaClass.simpleName, e.message, e)
     }
 }
+
+fun tryLazy(safeCall: () -> Unit) {
+    try {
+        safeCall()
+    } catch (e: Exception) {
+    }
+}

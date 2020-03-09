@@ -10,4 +10,7 @@
     <string name="menu_search">Search</string>
     <string name="menu_favorite_recipes">Favorite Recipes</string>
     <string name="linh_s_recipe">Linh\'s Recipe</string>
+    <string name="search_hint">Search for recipe by name</string>
+
+    <string name="calories">Calories: %s</string>
 </resources>

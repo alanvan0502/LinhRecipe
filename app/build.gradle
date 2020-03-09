@@ -62,6 +62,10 @@ dependencies {
     // Dependency Injection
     implementation 'org.kodein.di:kodein-di-generic-jvm:5.1.1'
 
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    kapt 'com.github.bumptech.glide:compiler:4.10.0'
+
     // AirBnb Epoxy
     implementation "com.airbnb.android:epoxy:3.9.0"
     kapt "com.airbnb.android:epoxy-processor:3.9.0"

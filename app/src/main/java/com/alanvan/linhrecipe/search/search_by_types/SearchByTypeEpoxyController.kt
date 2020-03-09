@@ -1,12 +1,12 @@
-package com.alanvan.linhrecipe.features.search
+package com.alanvan.linhrecipe.search.search_by_types
 
 import com.airbnb.epoxy.EpoxyModel
 import com.airbnb.epoxy.paging.PagedListEpoxyController
 import com.alanvan.domain.model.search.Recipes
-import com.alanvan.linhrecipe.features.search.view_item.RecipeEpoxyModel_
+import com.alanvan.linhrecipe.search.base.view_item.RecipeEpoxyModel_
 
 
-class SearchEpoxyController: PagedListEpoxyController<Recipes.Recipe>() {
+class SearchByTypeEpoxyController : PagedListEpoxyController<Recipes.Recipe>() {
 
     override fun buildItemModel(currentPosition: Int, item: Recipes.Recipe?): EpoxyModel<*> {
         return if (item == null) {
@@ -17,6 +17,8 @@ class SearchEpoxyController: PagedListEpoxyController<Recipes.Recipe>() {
             RecipeEpoxyModel_()
                 .id(item.recipe_id)
                 .recipeName(item.recipe_name)
+                .recipeImage(item.recipe_image)
+                .recipeCalories(item.recipe_nutrition.calories.toString())
         }
     }
 }

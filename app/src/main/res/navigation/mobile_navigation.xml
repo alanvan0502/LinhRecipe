@@ -12,14 +12,13 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_search_by_recipe_types"
-            app:destination="@id/nav_search"/>
+            app:destination="@id/search_by_type"/>
     </fragment>
 
     <fragment
-        android:id="@+id/nav_search"
-        android:name="com.alanvan.linhrecipe.features.search.SearchFragment"
-        android:label="@string/menu_search"
-        tools:layout="@layout/fragment_search" >
+        android:id="@+id/search_by_type"
+        android:name="com.alanvan.linhrecipe.search.search_by_types.SearchByTypeFragment"
+        tools:layout="@layout/fragment_search_by_type" >
         <argument
             android:name="recipeType"
             app:argType="string" />
@@ -30,5 +29,11 @@
         android:name="com.alanvan.linhrecipe.features.favorite_recipes.FavoriteRecipesFragment"
         android:label="@string/menu_favorite_recipes"
         tools:layout="@layout/fragment_favorite_recipes" />
+
+    <fragment
+        android:id="@+id/nav_search"
+        android:name="com.alanvan.linhrecipe.search.search_by_name.SearchByNameFragment"
+        android:label="@string/menu_search"
+        tools:layout="@layout/fragment_search_by_name"/>
 
 </navigation>

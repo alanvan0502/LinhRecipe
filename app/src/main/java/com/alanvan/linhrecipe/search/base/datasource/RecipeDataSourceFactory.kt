@@ -1,6 +1,5 @@
-package com.alanvan.linhrecipe.features.search.datasource
+package com.alanvan.linhrecipe.search.base.datasource
 
-import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import com.alanvan.domain.model.search.Recipes
 import io.reactivex.disposables.CompositeDisposable
@@ -11,11 +10,8 @@ class RecipeDataSourceFactory(
     private val recipeType: String
 ) : DataSource.Factory<Int, Recipes.Recipe>() {
 
-    val recipeDataSourceLiveData = MutableLiveData<RecipeDataSource>()
-
     override fun create(): DataSource<Int, Recipes.Recipe> {
-        val recipeDataSource = RecipeDataSource(compositeDisposable, searchExpression, recipeType)
-        recipeDataSourceLiveData.postValue(recipeDataSource)
-        return recipeDataSource
+        return RecipeDataSource(compositeDisposable, searchExpression, recipeType)
     }
+
 }

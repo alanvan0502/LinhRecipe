@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_search,
+                R.id.nav_home, R.id.search_by_type,
                 R.id.nav_favorite_recipes
             ), drawer_layout
         )

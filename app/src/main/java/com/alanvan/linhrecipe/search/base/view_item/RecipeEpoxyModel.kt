@@ -1,0 +1,66 @@
+package com.alanvan.linhrecipe.search.base.view_item
+
+import android.content.Context
+import android.widget.ImageView
+import android.widget.TextView
+import com.airbnb.epoxy.EpoxyAttribute
+import com.airbnb.epoxy.EpoxyModelClass
+import com.airbnb.epoxy.EpoxyModelWithHolder
+import com.alanvan.linhrecipe.LRApplication
+import com.alanvan.linhrecipe.R
+import com.alanvan.linhrecipe.base.epoxy.BaseEpoxyModel
+import com.alanvan.linhrecipe.utilities.loadImage
+import org.kodein.di.Kodein
+import org.kodein.di.KodeinAware
+import org.kodein.di.generic.instance
+
+@EpoxyModelClass
+abstract class RecipeEpoxyModel : EpoxyModelWithHolder<RecipeEpoxyModel.Holder>(), KodeinAware {
+    override val kodein: Kodein = LRApplication.kodein
+
+    private val context: Context by instance()
+
+    @EpoxyAttribute
+    var recipeName: String? = null
+
+    @EpoxyAttribute
+    var recipeCalories: String? = null
+
+    @EpoxyAttribute
+    var recipeImage: String? = null
+
+    override fun bind(holder: Holder) {
+        super.bind(holder)
+        holder.apply {
+            recipeNameTextView.text = recipeName
+
+            if (!recipeImage.isNullOrEmpty()) {
+                recipeImageView.loadImage(
+                    recipeImage,
+                    R.drawable.recipe_placeholder,
+                    goneWhenNullUrl = false
+                ) {
+                    it.centerCrop()
+                }
+            } else {
+                recipeImageView.loadImage(
+                    R.drawable.recipe_placeholder,
+                    goneWhenNullUrl = false
+                ) {
+                    it.centerCrop()
+                }
+            }
+            recipeCaloriesTextView.text = context.getString(R.string.calories, recipeCalories)
+        }
+    }
+
+    override fun getDefaultLayout(): Int {
+        return R.layout.recipe
+    }
+
+    class Holder : BaseEpoxyModel.Holder() {
+        val recipeNameTextView by bind<TextView>(R.id.recipeName)
+        val recipeImageView by bind<ImageView>(R.id.recipeImage)
+        val recipeCaloriesTextView by bind<TextView>(R.id.recipeCalories)
+    }
+}

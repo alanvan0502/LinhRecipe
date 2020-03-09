@@ -4,16 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.alanvan.linhrecipe.LRApplication
 import com.alanvan.linhrecipe.R
 import com.alanvan.linhrecipe.ViewState
-import com.alanvan.linhrecipe.features.search.SearchFragment
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -45,7 +44,7 @@ class HomeFragment : Fragment(), HomeEpoxyController.HomeEpoxyControllerActionLi
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         homeViewModel.getRecipeTypes()
         homeViewModel.recipeTypes().observe(viewLifecycleOwner, Observer {
-            epoxyController.setData(SPAN_COUNT, it)
+            epoxyController.setData(it)
         })
         homeViewModel.viewState().observe(viewLifecycleOwner, Observer {
             when (it) {
@@ -54,8 +53,11 @@ class HomeFragment : Fragment(), HomeEpoxyController.HomeEpoxyControllerActionLi
                 }
             }
         })
+    }
 
-
+    override fun onResume() {
+        super.onResume()
+        (activity as AppCompatActivity).supportActionBar?.show()
     }
 
     override fun onRecipeTypeClick(recipeType: String) {

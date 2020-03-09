@@ -9,4 +9,9 @@
     <dimen name="common_16dp">16dp</dimen>
     <dimen name="common_24sp">24sp</dimen>
     <dimen name="common_26sp">26sp</dimen>
+    <dimen name="common_18sp">18sp</dimen>
+    <dimen name="common_14sp">14sp</dimen>
+    <dimen name="common_8dp">8dp</dimen>
+    <dimen name="common_16sp">16sp</dimen>
+    <dimen name="dimen_300dp">300dp</dimen>
 </resources>
