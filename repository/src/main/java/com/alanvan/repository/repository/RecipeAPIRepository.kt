@@ -1,6 +1,7 @@
 package com.alanvan.repository.repository
 
 import com.alanvan.domain.model.home.RecipeType
+import com.alanvan.domain.model.search.Recipes
 import com.alanvan.domain.repository.RecipeRepository
 import com.alanvan.repository.data.injection.Modules
 import com.alanvan.repository.data.model.recipe_types.RecipeTypesMapper
@@ -18,5 +19,25 @@ class RecipeAPIRepository : RecipeRepository, KodeinAware {
     override fun getRecipeTypes(token: String?): Single<List<RecipeType>> {
         return service.getRecipeTypes("recipe_types.get", "json", token ?: "")
             .map { RecipeTypesMapper().map(it) }
+    }
+
+    override fun searchRecipes(
+        token: String?,
+        searchExpression: String,
+        recipeType: String,
+        pageNumber: Int,
+        maxResults: Int
+    ): Single<Recipes> {
+        return service.searchRecipe(
+            method = "recipes.search",
+            format = "json",
+            token = token ?: "",
+            searchExpression = searchExpression,
+            recipeType = recipeType,
+            pageNumber = pageNumber,
+            maxResults = maxResults
+        ).map {
+            it.recipes
+        }
     }
 }

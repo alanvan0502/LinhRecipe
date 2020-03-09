@@ -7,20 +7,23 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.alanvan.linhrecipe.LRApplication
 import com.alanvan.linhrecipe.R
 import com.alanvan.linhrecipe.ViewState
+import com.alanvan.linhrecipe.features.search.SearchFragment
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 
-class HomeFragment : Fragment(), KodeinAware {
+class HomeFragment : Fragment(), HomeEpoxyController.HomeEpoxyControllerActionListener, KodeinAware {
 
     override val kodein: Kodein = LRApplication.kodein
 
     private lateinit var homeViewModel: HomeViewModel
-    private val epoxyController = HomeEpoxyController(kodein)
+    private val epoxyController = HomeEpoxyController(kodein, this)
 
     companion object {
         const val SPAN_COUNT = 2
@@ -51,5 +54,12 @@ class HomeFragment : Fragment(), KodeinAware {
                 }
             }
         })
+
+
+    }
+
+    override fun onRecipeTypeClick(recipeType: String) {
+        val action = HomeFragmentDirections.actionSearchByRecipeTypes(recipeType)
+        findNavController().navigate(action)
     }
 }

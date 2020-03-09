@@ -20,7 +20,6 @@ import org.kodein.di.generic.instance
 @EpoxyModelClass
 abstract class RecipeTypeEpoxyModel
     : EpoxyModelWithHolder<RecipeTypeEpoxyModel.Holder>(), KodeinAware {
-
     override val kodein: Kodein = LRApplication.kodein
 
     private val context: Context by instance()
@@ -61,6 +60,8 @@ abstract class RecipeTypeEpoxyModel
                 image.layoutParams = layoutParams
             }
             description.text = recipeType?.value
+
+            itemView.setOnClickListener(onClickListener)
         }
     }
 
