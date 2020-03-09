@@ -32,7 +32,7 @@ class RecipeDataSource(
                 pageNumber = 0,
                 maxResults = params.requestedLoadSize
             ).subscribe({
-                callback.onResult(it.recipe, 0, 1)
+                callback.onResult(it.recipe ?: emptyList(), 0, 1)
             }, {
 
             })
@@ -48,7 +48,7 @@ class RecipeDataSource(
                 pageNumber = params.key,
                 maxResults = params.requestedLoadSize
             ).subscribe({
-                callback.onResult(it.recipe, params.key + 1)
+                callback.onResult(it.recipe ?: emptyList(), params.key + 1)
             }, {
 
             })

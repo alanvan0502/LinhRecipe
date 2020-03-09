@@ -3,7 +3,7 @@ package com.alanvan.domain.model.search
 data class Recipes (
     val max_results: Int,
     val page_number: Int,
-    val recipe: List<Recipe>,
+    val recipe: List<Recipe>?,
     val total_results: Int
 ) {
     data class Recipe (

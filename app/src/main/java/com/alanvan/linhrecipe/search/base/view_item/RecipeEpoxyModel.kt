@@ -27,6 +27,15 @@ abstract class RecipeEpoxyModel : EpoxyModelWithHolder<RecipeEpoxyModel.Holder>(
     var recipeCalories: String? = null
 
     @EpoxyAttribute
+    var recipeCarbohydrate: String? = null
+
+    @EpoxyAttribute
+    var recipeFat: String? = null
+
+    @EpoxyAttribute
+    var recipeProtein: String? = null
+
+    @EpoxyAttribute
     var recipeImage: String? = null
 
     override fun bind(holder: Holder) {
@@ -50,7 +59,16 @@ abstract class RecipeEpoxyModel : EpoxyModelWithHolder<RecipeEpoxyModel.Holder>(
                     it.centerCrop()
                 }
             }
-            recipeCaloriesTextView.text = context.getString(R.string.calories, recipeCalories)
+            recipeCaloriesTextView.text = context.getString(
+                R.string.calories_and_carbo,
+                recipeCalories,
+                recipeCarbohydrate)
+
+            recipeFatTextView.text = context.getString(
+                R.string.fat_and_protein,
+                recipeFat,
+                recipeProtein
+            )
         }
     }
 
@@ -62,5 +80,6 @@ abstract class RecipeEpoxyModel : EpoxyModelWithHolder<RecipeEpoxyModel.Holder>(
         val recipeNameTextView by bind<TextView>(R.id.recipeName)
         val recipeImageView by bind<ImageView>(R.id.recipeImage)
         val recipeCaloriesTextView by bind<TextView>(R.id.recipeCalories)
+        val recipeFatTextView by bind<TextView>(R.id.recipeFat)
     }
 }

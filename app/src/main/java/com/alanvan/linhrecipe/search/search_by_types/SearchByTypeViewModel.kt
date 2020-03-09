@@ -18,8 +18,10 @@ class SearchByTypeViewModel : ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
     private lateinit var sourceFactory: RecipeDataSourceFactory
+    private var recipeType: String? = null
 
     fun initialize(recipeType: String) {
+        this.recipeType = recipeType
         sourceFactory = RecipeDataSourceFactory(
             compositeDisposable = compositeDisposable,
             searchExpression = "",
@@ -32,5 +34,9 @@ class SearchByTypeViewModel : ViewModel() {
             .build()
 
         recipeList = LivePagedListBuilder<Int, Recipes.Recipe>(sourceFactory, config).build()
+    }
+
+    fun search(searchExpression: String) {
+        sourceFactory.invalidate(searchExpression)
     }
 }

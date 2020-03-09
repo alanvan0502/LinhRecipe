@@ -19,6 +19,9 @@ class SearchByTypeEpoxyController : PagedListEpoxyController<Recipes.Recipe>() {
                 .recipeName(item.recipe_name)
                 .recipeImage(item.recipe_image)
                 .recipeCalories(item.recipe_nutrition.calories.toString())
+                .recipeCarbohydrate(item.recipe_nutrition.carbohydrate.toString())
+                .recipeFat(item.recipe_nutrition.fat.toString())
+                .recipeProtein(item.recipe_nutrition.protein.toString())
         }
     }
 }

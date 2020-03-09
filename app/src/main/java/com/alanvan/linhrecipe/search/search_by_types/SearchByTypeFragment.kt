@@ -28,7 +28,6 @@ class SearchByTypeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        (activity as AppCompatActivity).supportActionBar?.hide()
         searchViewModel = ViewModelProvider(this).get(SearchByTypeViewModel::class.java)
         return inflater.inflate(R.layout.fragment_search_by_type, container, false)
     }
@@ -37,13 +36,7 @@ class SearchByTypeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val recipeType = args.recipeType
-        back_button.apply {
-            increaseTouchableArea()
-            setOnClickListener {
-                findNavController().navigate(R.id.nav_home)
-            }
-        }
-        recipe_type.text = recipeType
+        setupAppbar(recipeType)
 
         controller = SearchByTypeEpoxyController()
         recyclerView.layoutManager = LinearLayoutManager(context)
@@ -54,5 +47,27 @@ class SearchByTypeFragment : Fragment() {
         searchViewModel.recipeList?.observe(viewLifecycleOwner, Observer {
             controller.submitList(it)
         })
+
+        setupSearch()
+    }
+
+    private fun setupAppbar(recipeType: String) {
+        (activity as AppCompatActivity).supportActionBar?.hide()
+        back_button.apply {
+            increaseTouchableArea()
+            setOnClickListener {
+                findNavController().navigate(R.id.nav_home)
+            }
+        }
+        recipe_type.text = recipeType
+    }
+
+    private fun setupSearch() {
+        search.apply {
+            increaseTouchableArea()
+            setOnClickListener {
+                searchViewModel.search(search_text.text.toString())
+            }
+        }
     }
 }

@@ -39,11 +39,27 @@
         app:layout_constraintTop_toBottomOf="@+id/recipeName"
         tools:text="Calories 200" />
 
+    <TextView
+        android:id="@+id/recipeFat"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/common_16sp"
+        android:layout_marginEnd="@dimen/common_16sp"
+        android:ellipsize="end"
+        android:fontFamily="@font/roboto_regular"
+        android:singleLine="true"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/common_14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recipeCalories"
+        tools:text="Fat 1" />
+
     <ImageView
         android:id="@+id/recipeImage"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_300dp"
-        app:layout_constraintTop_toBottomOf="@id/recipeCalories"
+        app:layout_constraintTop_toBottomOf="@id/recipeFat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
