@@ -4,17 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alanvan.linhrecipe.R
-import com.alanvan.linhrecipe.features.search.base.SearchViewModel
 import com.alanvan.linhrecipe.features.search.base.SearchEpoxyController
+import com.alanvan.linhrecipe.features.search.base.SearchViewModel
+import com.alanvan.linhrecipe.utilities.hideKeyboard
 import com.alanvan.linhrecipe.utilities.increaseTouchableArea
 import kotlinx.android.synthetic.main.fragment_home.recyclerView
+import kotlinx.android.synthetic.main.fragment_search_by_name.*
 import kotlinx.android.synthetic.main.fragment_search_by_type.*
+import kotlinx.android.synthetic.main.fragment_search_by_type.search
+import kotlinx.android.synthetic.main.fragment_search_by_type.search_text
 
 class SearchByNameFragment : Fragment(), SearchEpoxyController.SearchEpoxyControllerActionListener {
 
@@ -43,7 +48,15 @@ class SearchByNameFragment : Fragment(), SearchEpoxyController.SearchEpoxyContro
             controller.submitList(it)
         })
 
+        setupAppbar()
         setupSearch()
+    }
+
+    private fun setupAppbar() {
+        val appBar = (activity as AppCompatActivity).supportActionBar
+        if (appBar != null && !appBar.isShowing) {
+            appBar.show()
+        }
     }
 
     private fun setupSearch() {
@@ -51,6 +64,7 @@ class SearchByNameFragment : Fragment(), SearchEpoxyController.SearchEpoxyContro
             increaseTouchableArea()
             setOnClickListener {
                 searchViewModel.search(search_text.text.toString())
+                it.hideKeyboard()
             }
         }
     }
@@ -63,5 +77,10 @@ class SearchByNameFragment : Fragment(), SearchEpoxyController.SearchEpoxyContro
                 recipeImage = recipeImage
             )
         findNavController().navigate(action)
+    }
+
+    override fun onPause() {
+        search.hideKeyboard()
+        super.onPause()
     }
 }

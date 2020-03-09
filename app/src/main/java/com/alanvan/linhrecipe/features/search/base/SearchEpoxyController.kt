@@ -20,12 +20,16 @@ class SearchEpoxyController(private val actionListener: SearchEpoxyControllerAct
                 .id(item.recipe_id)
                 .recipeName(item.recipe_name)
                 .recipeImage(item.recipe_image)
-                .recipeCalories(item.recipe_nutrition.calories.toString())
-                .recipeCarbohydrate(item.recipe_nutrition.carbohydrate.toString())
-                .recipeFat(item.recipe_nutrition.fat.toString())
-                .recipeProtein(item.recipe_nutrition.protein.toString())
+                .recipeCalories(item.recipe_nutrition?.calories.toString())
+                .recipeCarbohydrate(item.recipe_nutrition?.carbohydrate.toString())
+                .recipeFat(item.recipe_nutrition?.fat.toString())
+                .recipeProtein(item.recipe_nutrition?.protein.toString())
                 .clickListener(View.OnClickListener {
-                    actionListener.onRecipeClick(item.recipe_name, item.recipe_id, item.recipe_image)
+                    actionListener.onRecipeClick(
+                        recipeName = item.recipe_name ?: "",
+                        recipeId = item.recipe_id ?: "",
+                        recipeImage = item.recipe_image ?: ""
+                    )
                 })
         }
     }

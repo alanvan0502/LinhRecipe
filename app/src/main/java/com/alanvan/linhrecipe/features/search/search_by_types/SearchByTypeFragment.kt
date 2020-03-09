@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.alanvan.linhrecipe.R
 import com.alanvan.linhrecipe.features.search.base.SearchEpoxyController
 import com.alanvan.linhrecipe.features.search.base.SearchViewModel
+import com.alanvan.linhrecipe.utilities.hideKeyboard
 import com.alanvan.linhrecipe.utilities.increaseTouchableArea
 import kotlinx.android.synthetic.main.fragment_home.recyclerView
 import kotlinx.android.synthetic.main.fragment_search_by_type.*
@@ -70,6 +71,7 @@ class SearchByTypeFragment : Fragment(), SearchEpoxyController.SearchEpoxyContro
             increaseTouchableArea()
             setOnClickListener {
                 searchViewModel.search(search_text.text.toString())
+                it.hideKeyboard()
             }
         }
     }
@@ -82,5 +84,10 @@ class SearchByTypeFragment : Fragment(), SearchEpoxyController.SearchEpoxyContro
                 recipeImage = recipeImage
             )
         findNavController().navigate(action)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        search.hideKeyboard()
     }
 }

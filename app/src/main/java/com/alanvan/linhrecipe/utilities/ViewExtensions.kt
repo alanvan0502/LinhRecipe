@@ -6,6 +6,7 @@ import android.content.ContextWrapper
 import android.graphics.Rect
 import android.view.TouchDelegate
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
 import androidx.annotation.RawRes
@@ -55,7 +56,6 @@ fun ImageView.loadImage(
     }
 
     return this
-
 }
 
 fun ImageView.loadImage(
@@ -81,10 +81,9 @@ fun ImageView.loadImage(
     return this
 }
 
-val Context.activity: Activity?
-    get() =
-        this as? Activity ?: if (this is ContextWrapper) {
-            this.baseContext.activity
-        } else {
-            null
-        }
+fun View.hideKeyboard() {
+    tryLazy {
+        val inputMethodManager = context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager?
+        inputMethodManager?.hideSoftInputFromWindow(this.windowToken, 0)
+    }
+}
