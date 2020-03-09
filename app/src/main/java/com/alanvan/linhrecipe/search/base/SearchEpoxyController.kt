@@ -1,4 +1,4 @@
-package com.alanvan.linhrecipe.search.search_by_types
+package com.alanvan.linhrecipe.search.base
 
 import com.airbnb.epoxy.EpoxyModel
 import com.airbnb.epoxy.paging.PagedListEpoxyController
@@ -6,7 +6,7 @@ import com.alanvan.domain.model.search.Recipes
 import com.alanvan.linhrecipe.search.base.view_item.RecipeEpoxyModel_
 
 
-class SearchByTypeEpoxyController : PagedListEpoxyController<Recipes.Recipe>() {
+class SearchEpoxyController : PagedListEpoxyController<Recipes.Recipe>() {
 
     override fun buildItemModel(currentPosition: Int, item: Recipes.Recipe?): EpoxyModel<*> {
         return if (item == null) {

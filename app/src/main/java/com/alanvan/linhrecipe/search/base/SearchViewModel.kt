@@ -1,4 +1,4 @@
-package com.alanvan.linhrecipe.search.search_by_types
+package com.alanvan.linhrecipe.search.base
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -8,7 +8,7 @@ import com.alanvan.domain.model.search.Recipes
 import com.alanvan.linhrecipe.search.base.datasource.RecipeDataSourceFactory
 import io.reactivex.disposables.CompositeDisposable
 
-class SearchByTypeViewModel : ViewModel() {
+class SearchViewModel : ViewModel() {
 
     var recipeList: LiveData<PagedList<Recipes.Recipe>>? = null
 
