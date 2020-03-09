@@ -9,15 +9,11 @@ data class RecipeDetailsResponse(
         val ingredients: Ingredients,
         val number_of_servings: Int,
         val preparation_time_min: Int,
-        val rating: Int,
-        val recipe_categories: Categories,
+        val rating: String?,
         val recipe_description: String,
         val recipe_id: Long,
-        val recipe_images: Images,
         val recipe_name: String,
-        val recipe_types: RecipeTypes,
-        val recipe_url: String,
-        val serving_sizes: ServingSizes
+        val recipe_url: String
     ) {
 
         data class Directions(
@@ -41,48 +37,6 @@ data class RecipeDetailsResponse(
                 val measurement_description: String,
                 val number_of_units: Float,
                 val serving_id: Long
-            )
-        }
-
-        data class Categories(
-            val recipe_category: List<Category>?
-        ) {
-            data class Category(
-                val recipe_category_name: String,
-                val recipe_category_url: String
-            )
-        }
-
-        data class Images(
-            val recipe_image: String
-        )
-
-        data class RecipeTypes(
-            val recipe_type: List<String>?
-        )
-
-        data class ServingSizes(
-            val serving: Serving
-        ) {
-            data class Serving(
-                val calcium: Int,
-                val calories: Int,
-                val carbohydrate: Double,
-                val cholesterol: Int,
-                val fat: Double,
-                val fiber: Double,
-                val iron: Int,
-                val monounsaturated_fat: Double,
-                val polyunsaturated_fat: Double,
-                val potassium: Int,
-                val protein: Double,
-                val saturated_fat: Double,
-                val serving_size: String,
-                val sodium: Int,
-                val sugar: Double,
-                val trans_fat: Int,
-                val vitamin_a: Int,
-                val vitamin_c: Int
             )
         }
     }

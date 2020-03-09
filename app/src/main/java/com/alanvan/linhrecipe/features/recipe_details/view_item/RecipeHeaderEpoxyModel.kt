@@ -27,7 +27,10 @@ abstract class RecipeHeaderEpoxyModel : EpoxyModelWithHolder<RecipeHeaderEpoxyMo
     var recipeDescription: String? = null
 
     @EpoxyAttribute
-    var rating: Int? = null
+    var rating: String? = null
+
+    @EpoxyAttribute
+    var cookingTime: String? = null
 
     override fun bind(holder: Holder) {
         super.bind(holder)
@@ -50,7 +53,13 @@ abstract class RecipeHeaderEpoxyModel : EpoxyModelWithHolder<RecipeHeaderEpoxyMo
             }
 
             recipeDescriptionTextView.text = recipeDescription
-            ratingTextView.text = context.getString(R.string.rating, rating)
+            val ratingText = if (rating == "NaN" || rating.isNullOrEmpty()) {
+                "NA"
+            } else {
+                rating
+            }
+            ratingTextView.text = context.getString(R.string.rating, ratingText)
+            cookingTimeTextView.text = context.getString(R.string.cooking_time, cookingTime)
         }
     }
 
@@ -62,5 +71,6 @@ abstract class RecipeHeaderEpoxyModel : EpoxyModelWithHolder<RecipeHeaderEpoxyMo
         val recipeImageView: ImageView by bind(R.id.recipeImage)
         val recipeDescriptionTextView: TextView by bind(R.id.recipeDescription)
         val ratingTextView: TextView by bind(R.id.rating)
+        val cookingTimeTextView: TextView by bind(R.id.cooking_time)
     }
 }

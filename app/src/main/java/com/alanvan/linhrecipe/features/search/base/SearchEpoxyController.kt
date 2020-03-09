@@ -25,12 +25,12 @@ class SearchEpoxyController(private val actionListener: SearchEpoxyControllerAct
                 .recipeFat(item.recipe_nutrition.fat.toString())
                 .recipeProtein(item.recipe_nutrition.protein.toString())
                 .clickListener(View.OnClickListener {
-                    actionListener.onRecipeClick(item.recipe_name, item.recipe_id)
+                    actionListener.onRecipeClick(item.recipe_name, item.recipe_id, item.recipe_image)
                 })
         }
     }
 
     interface SearchEpoxyControllerActionListener {
-        fun onRecipeClick(recipeName: String, recipeId: String)
+        fun onRecipeClick(recipeName: String, recipeId: String, recipeImage: String)
     }
 }

@@ -14,6 +14,7 @@
         app:layout_constraintBottom_toTopOf="@id/recipeDescription"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="@dimen/common_8dp"
         tools:background="@drawable/breakfast"
         tools:ignore="ContentDescription" />
 
@@ -21,7 +22,21 @@
         android:id="@+id/recipeDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_bold"
+        android:fontFamily="@font/roboto_regular"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/common_16sp"
+        android:layout_marginStart="@dimen/common_16sp"
+        android:layout_marginEnd="@dimen/common_16sp"
+        app:layout_constraintBottom_toTopOf="@id/cooking_time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Braised Chickpeas with Tomato and Spinach"/>
+
+    <TextView
+        android:id="@+id/cooking_time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_regular"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/common_16sp"
         android:layout_marginStart="@dimen/common_16sp"
@@ -31,13 +46,13 @@
         app:layout_constraintBottom_toTopOf="@id/rating"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="Braised Chickpeas with Tomato and Spinach"/>
+        tools:text="Cooking time: 5 min"/>
 
     <TextView
         android:id="@+id/rating"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_bold"
+        android:fontFamily="@font/roboto_regular"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/common_16sp"
         android:layout_marginStart="@dimen/common_16sp"
@@ -47,6 +62,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="@dimen/common_8dp"
         tools:text="Rating: 5"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

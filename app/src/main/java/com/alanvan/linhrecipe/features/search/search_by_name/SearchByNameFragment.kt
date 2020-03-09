@@ -55,11 +55,12 @@ class SearchByNameFragment : Fragment(), SearchEpoxyController.SearchEpoxyContro
         }
     }
 
-    override fun onRecipeClick(recipeName: String, recipeId: String) {
+    override fun onRecipeClick(recipeName: String, recipeId: String, recipeImage: String) {
         val action = SearchByNameFragmentDirections
             .actionSearchByNameToRecipeDetailFragment(
                 recipeId = recipeId,
-                recipeName = recipeName
+                recipeName = recipeName,
+                recipeImage = recipeImage
             )
         findNavController().navigate(action)
     }

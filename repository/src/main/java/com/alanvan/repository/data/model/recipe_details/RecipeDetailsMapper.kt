@@ -13,9 +13,8 @@ class RecipeDetailsMapper : DataMapper<RecipeDetailsResponse, RecipeDetails>() {
                 ?: emptyList(),
             ingredients = source.recipe.ingredients.ingredient?.map { it.ingredient_description }
                 ?: emptyList(),
-            rating = source.recipe.rating,
-            recipeDescription = source.recipe.recipe_description,
-            recipeImage = source.recipe.recipe_images.recipe_image
+            rating = source.recipe.rating ?: "",
+            recipeDescription = source.recipe.recipe_description
         )
     }
 

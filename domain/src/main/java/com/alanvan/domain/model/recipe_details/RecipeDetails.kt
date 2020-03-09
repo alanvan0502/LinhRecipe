@@ -5,7 +5,6 @@ data class RecipeDetails (
     val cookingTime: String,
     val direction: List<String>,
     val ingredients: List<String>,
-    val rating: Int,
-    val recipeDescription: String,
-    val recipeImage: String
+    val rating: String,
+    val recipeDescription: String
 )

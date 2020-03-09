@@ -47,6 +47,9 @@
         <argument
             android:name="recipeName"
             app:argType="string" />
+        <argument
+            android:name="recipeImage"
+            app:argType="string" />
     </fragment>
 
 </navigation>
