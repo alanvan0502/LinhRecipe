@@ -19,7 +19,6 @@ class LRApplication : Application(), Application.ActivityLifecycleCallbacks {
         super.onCreate()
         initializeModules()
         initializeAPI()
-        AccountManager.initialize()
     }
 
     private fun initializeModules() {

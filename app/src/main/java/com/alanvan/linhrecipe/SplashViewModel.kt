@@ -13,6 +13,7 @@ class SplashViewModel : ViewModel() {
     val tokenLiveData = MutableLiveData<String?>(null)
 
     fun initialize() {
+        AccountManager.initialize()
         bag.add(AccountManager.getTokenSubject()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
