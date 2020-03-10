@@ -5,39 +5,69 @@ import io.reactivex.disposables.Disposable
 
 abstract class BaseUseCase<T, in Params> {
 
-    private val onResultTasks: MutableList<(T) -> Unit> = mutableListOf()
+    private val onResultTasks = TypeTasks<T>()
 
-    private val doBeforeTasks: MutableList<() -> Unit> = mutableListOf()
-    private val doAfterTasks: MutableList<() -> Unit> = mutableListOf()
-    private val onErrorTasks: MutableList<(Throwable) -> Unit> = mutableListOf()
+    private val doBeforeTasks = Tasks()
+    private val doAfterTasks = Tasks()
+    private val onErrorTasks = TypeTasks<Throwable>()
 
     open operator fun invoke(params: Params? = null): Disposable {
-        doBeforeTasks.forEach { it() }
+        doBeforeTasks.execute()
         val disposable = execute(params)
             .subscribe({ result ->
-                onResultTasks.forEach { tasks -> tasks(result) }
+                onResultTasks.execute(result)
             }, { error ->
-                onErrorTasks.forEach { task -> task(error) }
+                onErrorTasks.execute(error)
             })
-        doAfterTasks.forEach { it() }
+        doAfterTasks.execute()
         return disposable
     }
 
     abstract fun execute(params: Params? = null): Observable<T>
 
     fun addToOnResultTasks(delegate: (T) -> Unit) {
-        onResultTasks.add(delegate)
+        onResultTasks.addTask(delegate)
     }
 
     fun addToDoBeforeTasks(delegate: () -> Unit) {
-        doBeforeTasks.add(delegate)
+        doBeforeTasks.addTask(delegate)
     }
 
     fun addToDoAfterTasks(delegate: () -> Unit) {
-        doAfterTasks.add(delegate)
+        doAfterTasks.addTask(delegate)
     }
 
     fun addToOnErrorTasks(delegate: (Throwable) -> Unit) {
-        onErrorTasks.add(delegate)
+        onErrorTasks.addTask(delegate)
+    }
+
+    private class TypeTasks<T> {
+        private val taskList = mutableListOf<(T) -> Unit>()
+
+        fun addTask(task: (T) -> Unit) {
+            taskList.add(task)
+        }
+
+        fun execute(result: T) {
+            taskList.forEach { task ->
+                task.invoke(result)
+            }
+            taskList.clear()
+        }
+    }
+
+    private class Tasks {
+        private val taskList = mutableListOf<() -> Unit>()
+
+        fun addTask(task: () -> Unit) {
+            taskList.add(task)
+        }
+
+        fun execute() {
+            taskList.forEach { task ->
+                task.invoke()
+            }
+            taskList.clear()
+        }
     }
 }

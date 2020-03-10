@@ -4,6 +4,6 @@ data class RecipeTypesResponse(
     val recipe_types: RecipeTypesResponseData
 ) {
     data class RecipeTypesResponseData(
-        val recipe_type: List<String>?
+        val recipe_type: List<String?>?
     )
 }
